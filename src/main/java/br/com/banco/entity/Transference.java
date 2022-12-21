@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.ManyToOne;
@@ -24,6 +25,7 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="transferencia")
 public class Transference {
 
     @Id
@@ -35,7 +37,6 @@ public class Transference {
     private BigDecimal value;
 
     @Column(name = "data_transferencia", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp date;
 
     @Column(name = "tipo", nullable = false)
