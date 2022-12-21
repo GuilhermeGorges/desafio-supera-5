@@ -24,7 +24,7 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transfer {
+public class Transference {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
