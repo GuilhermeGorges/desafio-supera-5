@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -44,8 +44,8 @@ public class Transference {
     @Column(name = "nome_operador_transacao")
     private String transferOperationName;
 
-    @OneToMany
-    @JoinColumn(name = "conta_id")
+    @ManyToOne
+    @JoinColumn(name = "conta_id", referencedColumnName = "id_conta")
     private Account account;
 
 }
