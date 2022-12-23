@@ -18,6 +18,7 @@ import javax.persistence.EnumType;
 import javax.persistence.JoinColumn;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -36,7 +37,7 @@ public class Transference {
     private BigDecimal value;
 
     @Column(name = "data_transferencia", nullable = false)
-    private Timestamp date;
+    private LocalDateTime transferenceDate;
 
     @Column(name = "tipo", nullable = false)
     @Enumerated(EnumType.STRING)

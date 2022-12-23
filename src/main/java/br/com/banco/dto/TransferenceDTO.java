@@ -11,6 +11,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -24,7 +25,7 @@ public class TransferenceDTO {
     private BigDecimal value;
 
     @NotNull
-    private Timestamp date;
+    private LocalDateTime transferenceDate;
 
     @NotNull
     private String type;
