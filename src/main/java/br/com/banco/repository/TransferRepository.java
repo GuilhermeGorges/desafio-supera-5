@@ -10,5 +10,5 @@ import java.util.List;
 public interface TransferRepository extends JpaRepository<Transference, Long> {
 
     @Query("from Transference where conta_id = :conta_id")
-    List<Transference> findAllByAccountId(@Param("conta_id") Long account);
+    List<Transference> findAllByIdAccount(@Param("conta_id") Long account);
 }

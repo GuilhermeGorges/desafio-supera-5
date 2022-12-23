@@ -20,11 +20,18 @@ public class TransferenceService {
     private TransferRepository transferRepository;
     private final TransferenceMapper transferenceMapper = TransferenceMapper.INSTANCE;
 
+    public List<TransferenceDTO> getAllTransference() {
+        List<Transference> allTransference = transferRepository.findAll();
+        return allTransference.stream()
+                .map(transferenceMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 
-    public List<TransferenceDTO> getAllTransferenceByAccountId(final Long accountId) {
-        List<Transference> allTransference = transferRepository.findAllByAccountId(accountId);
+    public List<TransferenceDTO> getAllTransferenceByAccountId(Long account) {
+        List<Transference> allTransference = transferRepository.findAllByIdAccount(account);
         return allTransference.stream()
                     .map(transferenceMapper::toDTO)
                     .collect(Collectors.toList());
     }
+
 }

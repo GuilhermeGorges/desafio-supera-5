@@ -1,13 +1,11 @@
 package br.com.banco.dto;
 
 import br.com.banco.entity.Account;
-import br.com.banco.enums.TransferType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -29,7 +27,7 @@ public class TransferenceDTO {
     private Timestamp date;
 
     @NotNull
-    private TransferType type;
+    private String type;
 
     @Max(50)
     private String transferOperationName;
