@@ -1,5 +1,6 @@
 package br.com.banco.controller;
 
+import br.com.banco.dto.FilterDTO;
 import br.com.banco.dto.TransferenceDTO;
 import br.com.banco.service.TransferenceService;
 import lombok.AllArgsConstructor;
@@ -21,9 +22,10 @@ public class TransferenceController {
         return transferenceService.getAllTransference();
     }
 
-    @GetMapping("/{account}")
-    public List<TransferenceDTO> getAllTransferenceByAccountId(@PathVariable Long account) {
-        return transferenceService.getAllTransferenceByAccountId(account);
+    @GetMapping("/{accountNr}")
+    public List<TransferenceDTO> getAllTransferenceByAccountId(@PathVariable Long accountNr,
+                                                                @RequestBody(required = false) FilterDTO filterDTO) {
+        return transferenceService.getAllTransferenceByAccountId(accountNr, filterDTO);
     }
 
 }

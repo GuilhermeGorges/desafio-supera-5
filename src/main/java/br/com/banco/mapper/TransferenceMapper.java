@@ -12,8 +12,10 @@ public interface TransferenceMapper {
     TransferenceMapper INSTANCE = Mappers.getMapper(TransferenceMapper.class);
 
     @Mapping(source="type", target="type")
+    @Mapping(source="transferenceDate", target="transferenceDate")
     Transference toModel(TransferenceDTO transferenceDTO);
 
     @Mapping(source="type", target="type")
+    @Mapping(source="transferenceDate", target="transferenceDate")
     TransferenceDTO toDTO(Transference transference);
 }
