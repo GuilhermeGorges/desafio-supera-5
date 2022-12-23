@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.EnumType;
 import javax.persistence.JoinColumn;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
