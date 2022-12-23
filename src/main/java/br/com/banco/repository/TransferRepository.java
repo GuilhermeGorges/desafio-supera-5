@@ -19,5 +19,5 @@ public interface TransferRepository extends JpaRepository<Transference, Long> {
             "and    (?3 is null or (data_transferencia <= ?3)) " +
             "and    (?4 is null or (nome_operador_transacao LIKE ?4))")
     List<Transference> findByFilter
-            (Long accountNr, LocalDateTime startDate, LocalDateTime endDate, String transferOperationalName);
+            (final Long accountNr, final LocalDateTime startDate, final LocalDateTime endDate, final String transferOperationalName);
 }

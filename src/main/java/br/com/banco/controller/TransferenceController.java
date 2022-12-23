@@ -17,14 +17,9 @@ public class TransferenceController {
 
     private TransferenceService transferenceService;
 
-    @GetMapping
-    public List<TransferenceDTO> getAllTransference() {
-        return transferenceService.getAllTransference();
-    }
-
     @GetMapping("/{accountNr}")
-    public List<TransferenceDTO> getAllTransferenceByAccountId(@PathVariable Long accountNr,
-                                                                @RequestBody(required = false) FilterDTO filterDTO) {
+    public List<TransferenceDTO> getAllTransferenceByAccountId(@PathVariable final Long accountNr,
+                                                                @RequestBody(required = false) final FilterDTO filterDTO) {
         return transferenceService.getAllTransferenceByAccountId(accountNr, filterDTO);
     }
 

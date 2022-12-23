@@ -20,14 +20,7 @@ public class TransferenceService {
     private TransferRepository transferRepository;
     private final TransferenceMapper transferenceMapper = TransferenceMapper.INSTANCE;
 
-    public List<TransferenceDTO> getAllTransference() {
-        List<Transference> allTransference = transferRepository.findAll();
-        return allTransference.stream()
-                .map(transferenceMapper::toDTO)
-                .collect(Collectors.toList());
-    }
-
-    public List<TransferenceDTO> getAllTransferenceByAccountId(Long accountNr, FilterDTO filterDTO) {
+    public List<TransferenceDTO> getAllTransferenceByAccountId(final Long accountNr, final FilterDTO filterDTO) {
         if (filterDTO == null) {
             List<Transference> allTransference = transferRepository.findAllByAccountId(accountNr);
             return allTransference.stream()
@@ -37,7 +30,7 @@ public class TransferenceService {
         return getAllTransferenceByFilter(accountNr, filterDTO);
     }
 
-    public List<TransferenceDTO> getAllTransferenceByFilter(Long accountNr, FilterDTO filterDTO) {
+    public List<TransferenceDTO> getAllTransferenceByFilter(final Long accountNr, final FilterDTO filterDTO) {
         LocalDateTime startDate = filterDTO.getInitialFilterDate();
         LocalDateTime endDate = filterDTO.getEndFilterDate();
         String transferOperationalName = filterDTO.getTransferOperationName();
