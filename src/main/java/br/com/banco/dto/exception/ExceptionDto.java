@@ -1,4 +1,4 @@
-package br.com.banco.dto.response;
+package br.com.banco.dto.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

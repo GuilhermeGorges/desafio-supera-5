@@ -1,6 +1,6 @@
 package br.com.banco.exeption;
 
-import br.com.banco.dto.response.ExceptionDto;
+import br.com.banco.dto.exception.ExceptionDto;
 import br.com.banco.exeption.exeptions.IncorrectDateException;
 import br.com.banco.exeption.exeptions.TransferenceNotFoundException;
 import org.springframework.http.HttpStatus;

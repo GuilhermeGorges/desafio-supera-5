@@ -1,6 +1,7 @@
 package br.com.banco.service.impl;
 
 import br.com.banco.dto.request.FilterRequestDTO;
+import br.com.banco.dto.response.BankTransactionResponseDTO;
 import br.com.banco.dto.response.TransferenceResponseDTO;
 import br.com.banco.entity.Transference;
 import br.com.banco.exeption.exeptions.IncorrectDateException;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,27 +29,27 @@ public class TransferenceServiceImpl implements TransferenceService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<TransferenceResponseDTO> getAllTransferenceByAccountId(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException{
+    public BankTransactionResponseDTO getAllTransferenceByAccountId(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException{
+        List<Transference> allTransference;
+
         if (filterRequestDTO == null) {
-            List<Transference> allTransference = transferRepository.findAllByAccountId(accountNr);
+            allTransference = transferRepository.findAllByAccountId(accountNr);
             if(allTransference.isEmpty()) {
                 throw new TransferenceNotFoundException();
             }
-            return allTransference.stream()
-                    .map(transferenceMapper::toDTO)
-                    .collect(Collectors.toList());
+        } else {
+            allTransference = getAllTransferenceByFilter(accountNr, filterRequestDTO);
         }
-        return getAllTransferenceByFilter(accountNr, filterRequestDTO);
+        return createBankTransactionResponseDTO(allTransference);
     }
 
-    @Transactional(readOnly = true)
-    public List<TransferenceResponseDTO> getAllTransferenceByFilter(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
+    private List<Transference> getAllTransferenceByFilter(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
         LocalDateTime startDate = filterRequestDTO.getInitialFilterDate();
         LocalDateTime endDate = filterRequestDTO.getEndFilterDate();
-
         if (startDate != null && endDate != null) {
             verifyStartAndEndDate(startDate, endDate);
         }
+
         String transferOperationalName = filterRequestDTO.getTransferOperationName();
 
         List<Transference> allTransference = transferRepository.findByFilter(accountNr, startDate, endDate, transferOperationalName);
@@ -54,9 +57,7 @@ public class TransferenceServiceImpl implements TransferenceService {
         if (allTransference.isEmpty()) {
             throw new TransferenceNotFoundException(filterRequestDTO);
         }
-        return allTransference.stream()
-                .map(transferenceMapper::toDTO)
-                .collect(Collectors.toList());
+        return allTransference;
 
     }
 
@@ -66,4 +67,25 @@ public class TransferenceServiceImpl implements TransferenceService {
         }
     }
 
+    private BankTransactionResponseDTO createBankTransactionResponseDTO(final List<Transference> allTransference) {
+        BankTransactionResponseDTO bankTransactionResponseDTO = new BankTransactionResponseDTO();
+
+        List<TransferenceResponseDTO> transferenceResponseDTOList = allTransference.stream()
+                .map(transferenceMapper::toDTO)
+                .collect(Collectors.toList());
+
+        bankTransactionResponseDTO.setTransferenceList(transferenceResponseDTOList);
+        bankTransactionResponseDTO.setTotalBalance(sumTotalBalance(allTransference));
+
+        return bankTransactionResponseDTO;
+    }
+
+    private BigDecimal sumTotalBalance(final List<Transference> allTransference) {
+        BigDecimal totalBalance = BigDecimal.ZERO;
+        for(Transference transference : allTransference) {
+            totalBalance = totalBalance.add(transference.getValue());
+        }
+        totalBalance = totalBalance.setScale(2, RoundingMode.HALF_EVEN);
+        return totalBalance;
+    }
 }

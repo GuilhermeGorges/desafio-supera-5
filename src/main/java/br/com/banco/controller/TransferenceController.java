@@ -1,6 +1,7 @@
 package br.com.banco.controller;
 
 import br.com.banco.dto.request.FilterRequestDTO;
+import br.com.banco.dto.response.BankTransactionResponseDTO;
 import br.com.banco.dto.response.TransferenceResponseDTO;
 import br.com.banco.exeption.exeptions.IncorrectDateException;
 import br.com.banco.exeption.exeptions.TransferenceNotFoundException;
@@ -22,8 +23,8 @@ public class TransferenceController {
     private TransferenceService transferenceService;
 
     @GetMapping(value = "/{accountNr}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<TransferenceResponseDTO>> getAllTransferenceByAccountId(@PathVariable final Long accountNr,
-                                                                                      @RequestBody(required = false) final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
+    public ResponseEntity<BankTransactionResponseDTO> getAllTransferenceByAccountId(@PathVariable final Long accountNr,
+                                                                                    @RequestBody(required = false) final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
 
         return ResponseEntity.ok(transferenceService.getAllTransferenceByAccountId(accountNr, filterRequestDTO));
     }
