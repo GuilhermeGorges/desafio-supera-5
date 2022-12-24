@@ -1,4 +1,4 @@
-package br.com.banco.dto;
+package br.com.banco.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class FilterDTO {
+public class FilterRequestDTO {
 
     private LocalDateTime initialFilterDate;
     private LocalDateTime endFilterDate;

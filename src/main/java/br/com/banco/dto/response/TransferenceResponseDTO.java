@@ -1,4 +1,4 @@
-package br.com.banco.dto;
+package br.com.banco.dto.response;
 
 import br.com.banco.entity.Account;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransferenceDTO {
+public class TransferenceResponseDTO {
 
     private Long id;
 

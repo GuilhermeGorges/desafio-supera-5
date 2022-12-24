@@ -1,4 +1,4 @@
-package br.com.banco.dto;
+package br.com.banco.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountDTO {
+public class AccountRequestDTO {
 
     private Long id;
 
