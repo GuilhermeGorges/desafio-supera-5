@@ -19,5 +19,8 @@ public class BankTransactionResponseDTO {
     List<TransferenceResponseDTO> transferenceList;
 
     @NotNull
-    private BigDecimal totalBalance;
+    private BigDecimal totalExtractBalance;
+
+    @NotNull
+    private BigDecimal totalAccountBalance;
 }

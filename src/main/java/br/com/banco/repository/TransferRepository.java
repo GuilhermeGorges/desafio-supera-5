@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,4 +21,8 @@ public interface TransferRepository extends JpaRepository<Transference, Long> {
             "and    (?4 is null or (nome_operador_transacao LIKE ?4))")
     List<Transference> findByFilter
             (final Long accountNr, final LocalDateTime startDate, final LocalDateTime endDate, final String transferOperationalName);
+
+
+    @Query(value = "select sum(valor) from transferencia where conta_id = :conta_id", nativeQuery = true)
+    BigDecimal findAccountBalanceByAccountId(@Param("conta_id") Long account);
 }

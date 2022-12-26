@@ -2,7 +2,6 @@ package br.com.banco.controller;
 
 import br.com.banco.dto.request.FilterRequestDTO;
 import br.com.banco.dto.response.BankTransactionResponseDTO;
-import br.com.banco.dto.response.TransferenceResponseDTO;
 import br.com.banco.exeption.exeptions.IncorrectDateException;
 import br.com.banco.exeption.exeptions.TransferenceNotFoundException;
 import br.com.banco.service.TransferenceService;
@@ -12,10 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
-@RequestMapping("/banco")
+@RequestMapping("/transference")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @CrossOrigin(origins = "*")
 public class TransferenceController {

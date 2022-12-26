@@ -40,7 +40,7 @@ public class TransferenceServiceImpl implements TransferenceService {
         } else {
             allTransference = getAllTransferenceByFilter(accountNr, filterRequestDTO);
         }
-        return createBankTransactionResponseDTO(allTransference);
+        return createBankTransactionResponseDTO(accountNr, allTransference);
     }
 
     private List<Transference> getAllTransferenceByFilter(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
@@ -67,7 +67,7 @@ public class TransferenceServiceImpl implements TransferenceService {
         }
     }
 
-    private BankTransactionResponseDTO createBankTransactionResponseDTO(final List<Transference> allTransference) {
+    private BankTransactionResponseDTO createBankTransactionResponseDTO(final Long accountNr, final List<Transference> allTransference) {
         BankTransactionResponseDTO bankTransactionResponseDTO = new BankTransactionResponseDTO();
 
         List<TransferenceResponseDTO> transferenceResponseDTOList = allTransference.stream()
@@ -75,7 +75,8 @@ public class TransferenceServiceImpl implements TransferenceService {
                 .collect(Collectors.toList());
 
         bankTransactionResponseDTO.setTransferenceList(transferenceResponseDTOList);
-        bankTransactionResponseDTO.setTotalBalance(sumTotalBalance(allTransference));
+        bankTransactionResponseDTO.setTotalExtractBalance(sumTotalBalance(allTransference));
+        bankTransactionResponseDTO.setTotalAccountBalance(transferRepository.findAccountBalanceByAccountId(accountNr));
 
         return bankTransactionResponseDTO;
     }
