@@ -76,7 +76,7 @@ public class TransferenceServiceImpl implements TransferenceService {
 
         bankTransactionResponseDTO.setTransferenceList(transferenceResponseDTOList);
         bankTransactionResponseDTO.setTotalExtractBalance(sumTotalBalance(allTransference));
-        bankTransactionResponseDTO.setTotalAccountBalance(transferRepository.findAccountBalanceByAccountId(accountNr));
+        bankTransactionResponseDTO.setTotalAccountBalance(transferRepository.findTotalAccountBalanceByAccountId(accountNr));
 
         return bankTransactionResponseDTO;
     }
