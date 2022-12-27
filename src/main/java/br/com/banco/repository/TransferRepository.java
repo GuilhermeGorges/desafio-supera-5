@@ -22,7 +22,6 @@ public interface TransferRepository extends JpaRepository<Transference, Long> {
     List<Transference> findByFilter
             (final Long accountNr, final LocalDateTime startDate, final LocalDateTime endDate, final String transferOperationalName);
 
-
     @Query(value = "select sum(valor) from transferencia where conta_id = :conta_id", nativeQuery = true)
     BigDecimal findTotalAccountBalanceByAccountId(@Param("conta_id") Long account);
 }
