@@ -32,7 +32,7 @@ public class TransferenceServiceImpl implements TransferenceService {
     public BankTransactionResponseDTO getAllTransferenceByAccountId(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException{
         List<Transference> allTransference;
 
-        if (filterRequestDTO == null) {
+        if (filterRequestDTO.isFilterEmpty()) {
             allTransference = transferRepository.findAllByAccountId(accountNr);
             if(allTransference.isEmpty()) {
                 throw new TransferenceNotFoundException();

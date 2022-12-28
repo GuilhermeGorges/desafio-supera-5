@@ -9,12 +9,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Handler;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 @RestController
@@ -27,7 +27,7 @@ public class TransferenceController {
 
     @GetMapping(value = "/{accountNr}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BankTransactionResponseDTO> getAllTransferenceByAccountId(@PathVariable final Long accountNr,
-                                                                                    @RequestParam(value="filterRequestDTO", required = false) final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
+                                                                                    @ModelAttribute final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
         return ResponseEntity.ok(transferenceService.getAllTransferenceByAccountId(accountNr, filterRequestDTO));
     }
 
