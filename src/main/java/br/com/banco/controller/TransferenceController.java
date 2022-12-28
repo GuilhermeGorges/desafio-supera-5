@@ -11,6 +11,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Handler;
+
 
 @RestController
 @RequestMapping("/transference")
@@ -22,8 +27,7 @@ public class TransferenceController {
 
     @GetMapping(value = "/{accountNr}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BankTransactionResponseDTO> getAllTransferenceByAccountId(@PathVariable final Long accountNr,
-                                                                                    @RequestBody(required = false) final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
-
+                                                                                    @RequestParam(value="filterRequestDTO", required = false) final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
         return ResponseEntity.ok(transferenceService.getAllTransferenceByAccountId(accountNr, filterRequestDTO));
     }
 
