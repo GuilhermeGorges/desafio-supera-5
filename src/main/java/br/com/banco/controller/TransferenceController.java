@@ -2,6 +2,7 @@ package br.com.banco.controller;
 
 import br.com.banco.dto.request.FilterRequestDTO;
 import br.com.banco.dto.response.BankTransactionResponseDTO;
+import br.com.banco.dto.response.TransferenceResponseDTO;
 import br.com.banco.exeption.exeptions.IncorrectDateException;
 import br.com.banco.exeption.exeptions.TransferenceNotFoundException;
 import br.com.banco.service.TransferenceService;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/transference")
@@ -29,6 +32,11 @@ public class TransferenceController {
     public ResponseEntity<BankTransactionResponseDTO> getAllTransferenceByAccountId(@PathVariable final Long accountNr,
                                                                                     @ModelAttribute final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
         return ResponseEntity.ok(transferenceService.getAllTransferenceByAccountId(accountNr, filterRequestDTO));
+    }
+
+    @GetMapping
+    public List<TransferenceResponseDTO> getAllTransference(){
+        return transferenceService.getAllTransference();
     }
 
 }

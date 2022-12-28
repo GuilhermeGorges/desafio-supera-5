@@ -27,6 +27,15 @@ public class TransferenceServiceImpl implements TransferenceService {
     private TransferRepository transferRepository;
     private final TransferenceMapper transferenceMapper = TransferenceMapper.INSTANCE;
 
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TransferenceResponseDTO> getAllTransference() {
+        return transferRepository.findAll().stream()
+                .map(transferenceMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     @Override
     @Transactional(readOnly = true)
     public BankTransactionResponseDTO getAllTransferenceByAccountId(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException{

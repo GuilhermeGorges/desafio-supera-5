@@ -27,7 +27,7 @@ public class BankTransactionResponseDTOBuilder {
     @Builder.Default
     private BigDecimal totalAccountBalance = BigDecimal.valueOf(100000.99);
 
-    private List<TransferenceResponseDTO> getTransferenceList() {
+    private static List<TransferenceResponseDTO> getTransferenceList() {
         List<TransferenceResponseDTO> transferenceList = new ArrayList<>();
         TransferenceResponseDTO transference = new TransferenceResponseDTO();
         transference.setId(1L);
