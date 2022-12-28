@@ -16,7 +16,7 @@ import java.util.List;
 public class BankTransactionResponseDTO {
 
     @NotNull
-    List<TransferenceResponseDTO> transferenceList;
+    private List<TransferenceResponseDTO> transferenceList;
 
     @NotNull
     private BigDecimal totalExtractBalance;

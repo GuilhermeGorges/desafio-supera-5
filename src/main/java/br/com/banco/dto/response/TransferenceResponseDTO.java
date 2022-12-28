@@ -1,6 +1,7 @@
 package br.com.banco.dto.response;
 
 import br.com.banco.entity.Account;
+import br.com.banco.enums.TransferenceTypeEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,4 +38,5 @@ public class TransferenceResponseDTO {
     @NotNull
     @Valid
     private Account account;
+
 }
