@@ -15,16 +15,12 @@ import java.time.LocalDateTime;
 public class FilterRequestDTOBuilder {
 
     @Builder.Default
-    private LocalDateTime initialFilterDate = LocalDateTime.parse("2019-05-04T02:12:45");
+    private LocalDateTime initialFilterDate = null; //LocalDateTime.parse("2019-05-04T02:12:45");
     @Builder.Default
-    private LocalDateTime endFilterDate = LocalDateTime.parse("2021-05-04T02:12:45");
+    private LocalDateTime endFilterDate = null;// LocalDateTime.parse("2021-05-04T02:12:45");
 
     @Builder.Default
     private String transferOperationName = "Asdrubal";
-
-    public boolean isFilterEmpty() {
-        return (this.getInitialFilterDate() == null) && (this.getEndFilterDate() == null) && (this.getTransferOperationName().equals(""));
-    }
 
     public FilterRequestDTO filterRequestDTO() {
         return new FilterRequestDTO(initialFilterDate,

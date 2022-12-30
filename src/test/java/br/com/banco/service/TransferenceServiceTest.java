@@ -45,7 +45,7 @@ public class TransferenceServiceTest {
     private MockMvc mockMvc;
 
     @InjectMocks
-    private TransferenceServiceImpl transferenceServiceImpl = new TransferenceServiceImpl(transferRepository);
+    private TransferenceService transferenceService = new TransferenceServiceImpl(transferRepository);
 
     @Test
     void whenListTransferenceResponseDTOIsCalledThenReturnListOfTransference() {
@@ -57,7 +57,7 @@ public class TransferenceServiceTest {
         when(transferRepository.findAll()).thenReturn(Collections.singletonList(expectedFoundTransference));
 
         //then
-        List<TransferenceResponseDTO> foundListTransferenceResponseDTO = transferenceServiceImpl.getAllTransference();
+        List<TransferenceResponseDTO> foundListTransferenceResponseDTO = transferenceService.getAllTransference();
 
         assertThat(foundListTransferenceResponseDTO, is(not(empty())));
         assertThat(foundListTransferenceResponseDTO.get(0), is(equalTo(expectedFoundTransferenceResponseDTO)));
@@ -73,7 +73,7 @@ public class TransferenceServiceTest {
 
         Long accountID = bankTransactionResponseDTO.getTransferenceList().get(0).getAccount().getId();
         //when
-        when(transferenceServiceImpl.getAllTransferenceByAccountIdAndFilter(accountID, filterRequestDTO));
+        when(transferenceService.getAllTransferenceByAccountIdAndFilter(accountID, filterRequestDTO));
         //then
         mockMvc.perform(MockMvcRequestBuilders.get(TRANSFERENCE_API_URL_PATH + "/" + accountID)
                 .contentType(MediaType.APPLICATION_JSON))
