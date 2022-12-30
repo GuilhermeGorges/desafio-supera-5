@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public interface TransferenceService {
 
-    BankTransactionResponseDTO getAllTransferenceByAccountId(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException;
+    BankTransactionResponseDTO getAllTransferenceByAccountIdAndFilter(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException;
 
     List<TransferenceResponseDTO> getAllTransference();
 

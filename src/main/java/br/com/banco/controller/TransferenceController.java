@@ -29,13 +29,13 @@ public class TransferenceController {
     private TransferenceService transferenceService;
 
     @GetMapping(value = "/{accountNr}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BankTransactionResponseDTO> getAllTransferenceByAccountId(@PathVariable final Long accountNr,
-                                                                                    @ModelAttribute final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
-        return ResponseEntity.ok(transferenceService.getAllTransferenceByAccountId(accountNr, filterRequestDTO));
+    public ResponseEntity<BankTransactionResponseDTO> getAllTransferenceByAccountIdAndFilter(@PathVariable final Long accountNr,
+                                                                                            @ModelAttribute final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException {
+        return ResponseEntity.ok(transferenceService.getAllTransferenceByAccountIdAndFilter(accountNr, filterRequestDTO));
     }
 
     @GetMapping
-    public List<TransferenceResponseDTO> getAllTransference(){
+    private List<TransferenceResponseDTO> getAllTransference(){
         return transferenceService.getAllTransference();
     }
 

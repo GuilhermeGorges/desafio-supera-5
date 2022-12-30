@@ -38,10 +38,10 @@ public class TransferenceServiceImpl implements TransferenceService {
 
     @Override
     @Transactional(readOnly = true)
-    public BankTransactionResponseDTO getAllTransferenceByAccountId(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException{
+    public BankTransactionResponseDTO getAllTransferenceByAccountIdAndFilter(final Long accountNr, final FilterRequestDTO filterRequestDTO) throws IncorrectDateException, TransferenceNotFoundException{
         List<Transference> allTransference;
 
-        if (filterRequestDTO.isFilterEmpty()) {
+        if (filterRequestDTO == null) {
             allTransference = transferRepository.findAllByAccountId(accountNr);
             if(allTransference.isEmpty()) {
                 throw new TransferenceNotFoundException();

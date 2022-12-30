@@ -23,8 +23,4 @@ public class FilterRequestDTO {
     @Max(50)
     private String transferOperationName;
 
-    public boolean isFilterEmpty() {
-        return (this.getInitialFilterDate() == null) && (this.getEndFilterDate() == null) && (this.getTransferOperationName().equals(""));
-    }
-
 }
