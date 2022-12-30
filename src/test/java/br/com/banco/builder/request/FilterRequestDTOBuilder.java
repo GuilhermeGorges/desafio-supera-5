@@ -17,7 +17,7 @@ public class FilterRequestDTOBuilder {
     @Builder.Default
     private LocalDateTime initialFilterDate = LocalDateTime.parse("2019-05-04T02:12:45");
     @Builder.Default
-    private LocalDateTime endFilterDate = LocalDateTime.parse("2022-05-04T02:12:45");
+    private LocalDateTime endFilterDate = LocalDateTime.parse("2021-05-04T02:12:45");
 
     @Builder.Default
     private String transferOperationName = "Asdrubal";

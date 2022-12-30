@@ -25,8 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TransferenceControllerTest {
 
     private static final String TRANSFERENCE_API_URL_PATH = "/transference";
-    private static final long VALID_TRANSFERENCE_ID = 1L;
-    private static final long INVALID_TRANSFERENCE_ID = 2l;
+    private static final long VALID_TRANSFERENCE_ID = 10L;
+    private static final long INVALID_TRANSFERENCE_ID = 99l;
 
     private MockMvc mockMvc;
 
